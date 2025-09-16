@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muneez Moidu | Cybersecurity Analyst</title>
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔒</text></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/animejs/lib/anime.iife.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        :root {
+            --primary-blue: #00d4ff;
+            --dark-blue: #0a0e27;
+            --darker-blue: #050714;
+            --accent-green: #00ff88;
+            --cyber-purple: #8b5cf6;
+        }
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: var(--darker-blue);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        
+        .cyber-glow {
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+        
+        .cyber-border {
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            background: rgba(0, 212, 255, 0.05);
+        }
+        
+        .skill-bar {
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-green));
+            height: 4px;
+            border-radius: 2px;
+            transition: width 1s ease-out;
+            width: 0;
+        }
+        
+        .timeline-line {
+            background: linear-gradient(180deg, var(--primary-blue), transparent);
+        }
+        
+        .project-card {
+            background: rgba(10, 14, 39, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0, 212, 255, 0.3);
+        }
+        
+        .section-title {
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .typing-effect {
+            overflow: hidden;
+            border-right: 3px solid var(--primary-blue);
+            white-space: nowrap;
+            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--primary-blue) }
+        }
+        
+        .vanta-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background: var(--primary-blue);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+            left: 0;
+        }
+        
+        .btn-cyber {
+            background: linear-gradient(45deg, var(--primary-blue), var(--accent-green));
+            border: none;
+            color: var(--darker-blue);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-cyber:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+        }
+        
+        .cert-badge {
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid var(--primary-blue);
+            color: var(--primary-blue);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin: 0.25rem;
+            font-size: 0.875rem;
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+        
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        
+        @media (max-width: 768px) {
+            .typing-effect {
+                white-space: normal;
+                border: none;
+                animation: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-gray-900/90 backdrop-blur-md border-b border-cyan-500/20">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold text-cyan-400">MM</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link text-gray-300 hover:text-cyan-400">Home</a>
+                    <a href="#about" class="nav-link text-gray-300 hover:text-cyan-400">About</a>
+                    <a href="#experience" class="nav-link text-gray-300 hover:text-cyan-400">Experience</a>
+                    <a href="#projects" class="nav-link text-gray-300 hover:text-cyan-400">Projects</a>
+                    <a href="#skills" class="nav-link text-gray-300 hover:text-cyan-400">Skills</a>
+                    <a href="#contact" class="nav-link text-gray-300 hover:text-cyan-400">Contact</a>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden text-white">
+                    <i data-feather="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-64 bg-gray-900 p-6 md:hidden">
+            <button id="close-menu" class="absolute top-4 right-4 text-white">
+                <i data-feather="x" class="w-6 h-6"></i>
+            </button>
+            <div class="mt-12 space-y-6">
+                <a href="#home" class="block text-gray-300 hover:text-cyan-400">Home</a>
+                <a href="#about" class="block text-gray-300 hover:text-cyan-400">About</a>
+                <a href="#experience" class="block text-gray-300 hover:text-cyan-400">Experience</a>
+                <a href="#projects" class="block text-gray-300 hover:text-cyan-400">Projects</a>
+                <a href="#skills" class="block text-gray-300 hover:text-cyan-400">Skills</a>
+                <a href="#contact" class="block text-gray-300 hover:text-cyan-400">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <div id="vanta-bg" class="vanta-bg"></div>
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <div data-aos="fade-up" data-aos-duration="1000">
+                <img src="images/WhatsApp%20Image%202025-09-16%20at%2012.32.53_115120df.jpg" alt="Muneez Moidu" class="w-32 h-32 rounded-full object-cover object-center mx-auto mb-6 border-4 border-cyan-400 cyber-glow floating">
+                <h1 class="text-5xl md:text-7xl font-bold mb-4">
+                    <span class="text-white">Muneez</span> <span class="text-cyan-400">Moidu</span>
+                </h1>
+                <div class="text-xl md:text-2xl text-gray-300 mb-8">
+                    <span class="typing-effect">Cybersecurity Analyst | SIEM Expert</span>
+                </div>
+                <p class="text-lg text-gray-400 mb-12 max-w-2xl mx-auto">
+                    Strengthening security protocols and minimizing risks through advanced threat detection and SIEM management at The Fifth Element, Dubai.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button class="btn-cyber px-8 py-3 rounded-lg" onclick="scrollToSection('contact')">
+                        Get In Touch
+                    </button>
+                    <button class="border border-cyan-400 text-cyan-400 px-8 py-3 rounded-lg hover:bg-cyan-400 hover:text-gray-900 transition-all duration-300">
+                        <i data-feather="download" class="inline w-4 h-4 mr-2"></i>
+                        Download Resume
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <i data-feather="chevron-down" class="w-8 h-8 text-cyan-400"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 md:py-32">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title text-4xl md:text-5xl font-bold text-center mb-16" data-aos="fade-up">
+                About Me
+            </h2>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right" data-aos-delay="200">
+                    <div class="cyber-border rounded-lg p-8">
+                        <h3 class="text-2xl font-bold text-cyan-400 mb-4">Professional Journey</h3>
+                        <p class="text-gray-300 mb-6 leading-relaxed">
+                            As a Cybersecurity Analyst at The Fifth Element in Dubai, I specialize in strengthening security protocols and minimizing organizational risks. My expertise spans threat detection, SIEM management, and implementing effective security strategies that safeguard critical assets.
+                        </p>
+                        <p class="text-gray-300 mb-6 leading-relaxed">
+                            Currently pursuing my Bachelor of Science in Cyber Security from the University of West London, I combine academic knowledge with practical experience to deliver cutting-edge cybersecurity solutions.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mt-6">
+                            <span class="cert-badge">CompTIA A+</span>
+                            <span class="cert-badge">CompTIA Security+</span>
+                        </div>
+                    </div>
+                </div>
+                <div data-aos="fade-left" data-aos-delay="400">
+                    <div class="space-y-6">
+                        <div class="cyber-border rounded-lg p-6">
+                            <h4 class="text-xl font-bold text-cyan-400 mb-3">Education</h4>
+                            <p class="text-gray-300">Bachelor of Science in Cyber Security</p>
+                            <p class="text-sm text-gray-400">University of West London | Graduating July 2025</p>
+                        </div>
+                        <div class="cyber-border rounded-lg p-6">
+                            <h4 class="text-xl font-bold text-cyan-400 mb-3">Location</h4>
+                            <p class="text-gray-300">Sharjah, UAE</p>
+                            <p class="text-sm text-gray-400">Available for opportunities across UAE</p>
+                        </div>
+                        <div class="cyber-border rounded-lg p-6">
+                            <h4 class="text-xl font-bold text-cyan-400 mb-3">Languages</h4>
+                            <p class="text-gray-300">English (Professional), Hindi (Native), Arabic (Conversational)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 md:py-32 bg-gray-900/50">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title text-4xl md:text-5xl font-bold text-center mb-16" data-aos="fade-up">
+                Experience
+            </h2>
+            <div class="relative">
+                <div class="timeline-line absolute left-1/2 transform -translate-x-1/2 w-1 h-full rounded-full"></div>
+                
+                <div class="space-y-12">
+                    <!-- Current Position -->
+                    <div class="flex flex-col md:flex-row items-center" data-aos="fade-right">
+                        <div class="w-full md:w-1/2 md:pr-8 md:text-right mb-4 md:mb-0">
+                            <div class="cyber-border rounded-lg p-6">
+                                <h3 class="text-xl font-bold text-cyan-400">Cybersecurity Analyst</h3>
+                                <p class="text-gray-300 font-semibold">The Fifth Element</p>
+                                <p class="text-sm text-gray-400 mb-3">October 2024 - Present | Dubai, UAE</p>
+                                <ul class="text-gray-300 text-sm space-y-1">
+                                    <li>• Recommended preventive security measures to decrease attack surfaces</li>
+                                    <li>• Analyzed security breaches to determine root causes</li>
+                                    <li>• Monitored network security systems for vulnerabilities</li>
+                                    <li>• Developed cybersecurity policies and protocols</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="w-8 h-8 bg-cyan-400 rounded-full border-4 border-gray-900 z-10 my-4 md:my-0"></div>
+                        <div class="w-full md:w-1/2 md:pl-8"></div>
+                    </div>
+
+                    <!-- IT Security Intern -->
+                    <div class="flex flex-col md:flex-row items-center" data-aos="fade-left">
+                        <div class="w-full md:w-1/2 md:pr-8 md:text-right"></div>
+                        <div class="w-8 h-8 bg-gray-600 rounded-full border-4 border-gray-900 z-10 my-4 md:my-0"></div>
+                        <div class="w-full md:w-1/2 md:pl-8 mt-4 md:mt-0">
+                            <div class="cyber-border rounded-lg p-6">
+                                <h3 class="text-xl font-bold text-cyan-400">IT Security Intern</h3>
+                                <p class="text-gray-300 font-semibold">Cyberguard</p>
+                                <p class="text-sm text-gray-400 mb-3">April 2024 - September 2024 | Dubai, UAE</p>
+                                <ul class="text-gray-300 text-sm space-y-1">
+                                    <li>• Assisted in vulnerability assessments and penetration testing</li>
+                                    <li>• Supported SIEM monitoring and log analysis</li>
+                                    <li>• Participated in security incident investigations</li>
+                                    <li>• Assisted with VAPT procedures and policy documentation</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Junior IT Support Specialist -->
+                    <div class="flex flex-col md:flex-row items-center" data-aos="fade-right">
+                        <div class="w-full md:w-1/2 md:pr-8 md:text-right mb-4 md:mb-0">
+                            <div class="cyber-border rounded-lg p-6">
+                                <h3 class="text-xl font-bold text-cyan-400">Junior IT Support Specialist</h3>
+                                <p class="text-gray-300 font-semibold">Techflow Mobile Services LLC</p>
+                                <p class="text-sm text-gray-400 mb-3">June 2023 - March 2024 | Dubai, UAE</p>
+                                <ul class="text-gray-300 text-sm space-y-1">
+                                    <li>• Provided mobile device management and security support</li>
+                                    <li>• Performed security updates and patch management</li>
+                                    <li>• Monitored system logs for security anomalies</li>
+                                    <li>• Supported IT security implementations</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="w-8 h-8 bg-gray-600 rounded-full border-4 border-gray-900 z-10 my-4 md:my-0"></div>
+                        <div class="w-full md:w-1/2 md:pl-8"></div>
+                    </div>
+
+                    <!-- Cybersecurity Research Assistant -->
+                    <div class="flex flex-col md:flex-row items-center" data-aos="fade-left">
+                        <div class="w-full md:w-1/2 md:pr-8 md:text-right"></div>
+                        <div class="w-8 h-8 bg-gray-600 rounded-full border-4 border-gray-900 z-10 my-4 md:my-0"></div>
+                        <div class="w-full md:w-1/2 md:pl-8 mt-4 md:mt-0">
+                            <div class="cyber-border rounded-lg p-6">
+                                <h3 class="text-xl font-bold text-cyan-400">Cybersecurity Research Assistant</h3>
+                                <p class="text-gray-300 font-semibold">University of West London</p>
+                                <p class="text-sm text-gray-400 mb-3">January 2023 - May 2023 | Ras Al Khaimah, UAE</p>
+                                <ul class="text-gray-300 text-sm space-y-1">
+                                    <li>• Assisted with behavioral biometrics research</li>
+                                    <li>• Developed insider threat detection models</li>
+                                    <li>• Conducted vulnerability research</li>
+                                    <li>• Created Python scripts for security automation</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 md:py-32">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title text-4xl md:text-5xl font-bold text-center mb-16" data-aos="fade-up">
+                Featured Projects
+            </h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="project-card rounded-lg p-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="mb-4">
+                        <i data-feather="shield" class="w-12 h-12 text-cyan-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">AI Enhanced Insider Threat Detection</h3>
+                    <p class="text-gray-400 mb-4">Advanced threat detection using behavioral biometrics and machine learning algorithms to identify insider threats.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs bg-cyan-400/20 text-cyan-400 px-2 py-1 rounded">Python</span>
+                        <span class="text-xs bg-cyan-400/20 text-cyan-400 px-2 py-1 rounded">Machine Learning</span>
+                        <span class="text-xs bg-cyan-400/20 text-cyan-400 px-2 py-1 rounded">Behavioral Analysis</span>
+                    </div>
+                    <button class="text-cyan-400 hover:text-cyan-300 font-semibold">View Project →</button>
+                </div>
+
+                <div class="project-card rounded-lg p-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="mb-4">
+                        <i data-feather="eye" class="w-12 h-12 text-cyan-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">AI Image Caption Generation</h3>
+                    <p class="text-gray-400 mb-4">Accessibility-focused AI application that generates descriptive captions for images, helping people of determination.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs bg-cyan-400/20 text-cyan-400 px-2 py-1 rounded">AI/ML</span>
+                        <span class="text-xs bg-cyan-400/20 text-cyan-400 px-2 py-1 rounded">Accessibility</span>
+                        <span class="text-xs bg-cyan-400/20 text-cyan-400 px-2 py-1 rounded">Computer Vision</span>
+                    </div>
+                    <button class="text-cyan-400 hover:text-cyan-300 font-semibold">View Project →</button>
+                </div>
+
+                <div class="project-card rounded-lg p-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="mb-4">
+                        <i data-feather="activity" class="w-12 h-12 text-cyan-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Productivity Tracking Pipeline</h3>
+                    <p class="text-gray-400 mb-4">Full-stack MERN application for tracking and analyzing productivity metrics with real-time dashboards.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs bg-cyan-400/20 text-cyan-400 px-2 py-1 rounded">MERN Stack</span>
+                        <span class="text-xs bg-cyan-400/20 text-cyan-400 px-2 py-1 rounded">Real-time</span>
+                        <span class="text-xs bg-cyan-400/20 text-cyan-400 px-2 py-1 rounded">Analytics</span>
+                    </div>
+                    <button class="text-cyan-400 hover:text-cyan-300 font-semibold">View Project →</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 md:py-32 bg-gray-900/50">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title text-4xl md:text-5xl font-bold text-center mb-16" data-aos="fade-up">
+                Skills & Expertise
+            </h2>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div data-aos="fade-right">
+                    <h3 class="text-2xl font-bold text-cyan-400 mb-6">Technical Skills</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-300">Cybersecurity Incident Analysis</span>
+                                <span class="text-cyan-400">90%</span>
+                            </div>
+                            <div class="bg-gray-700 rounded-full h-2">
+                                <div class="skill-bar rounded-full" data-width="90%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-300">Vulnerability Assessment & Penetration Testing</span>
+                                <span class="text-cyan-400">85%</span>
+                            </div>
+                            <div class="bg-gray-700 rounded-full h-2">
+                                <div class="skill-bar rounded-full" data-width="85%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-300">SIEM Management & Log Analysis</span>
+                                <span class="text-cyan-400">88%</span>
+                            </div>
+                            <div class="bg-gray-700 rounded-full h-2">
+                                <div class="skill-bar rounded-full" data-width="88%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-300">Python & JavaScript</span>
+                                <span class="text-cyan-400">82%</span>
+                            </div>
+                            <div class="bg-gray-700 rounded-full h-2">
+                                <div class="skill-bar rounded-full" data-width="82%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-300">Mobile Device Management</span>
+                                <span class="text-cyan-400">78%</span>
+                            </div>
+                            <div class="bg-gray-700 rounded-full h-2">
+                                <div class="skill-bar rounded-full" data-width="78%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div data-aos="fade-left">
+                    <h3 class="text-2xl font-bold text-cyan-400 mb-6">Certifications</h3>
+                    <div class="grid grid-cols-1 gap-4">
+                        <div class="cyber-border rounded-lg p-4 text-center">
+                            <i data-feather="award" class="w-12 h-12 text-cyan-400 mx-auto mb-2"></i>
+                            <h4 class="font-bold text-white">CompTIA A+</h4>
+                            <p class="text-sm text-gray-400">Certified Professional</p>
+                        </div>
+                        <div class="cyber-border rounded-lg p-4 text-center">
+                            <i data-feather="shield" class="w-12 h-12 text-cyan-400 mx-auto mb-2"></i>
+                            <h4 class="font-bold text-white">CompTIA Security+</h4>
+                            <p class="text-sm text-gray-400">Security Specialist</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 md:py-32">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title text-4xl md:text-5xl font-bold text-center mb-16" data-aos="fade-up">
+                Get In Touch
+            </h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div data-aos="fade-right">
+                        <h3 class="text-2xl font-bold text-white mb-6">Let's Connect</h3>
+                        <p class="text-gray-400 mb-8">
+                            I'm always interested in discussing cybersecurity opportunities, consulting projects, and collaborative ventures. Feel free to reach out!
+                        </p>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <i data-feather="map-pin" class="w-5 h-5 text-cyan-400 mr-3"></i>
+                                <span class="text-gray-300">Sharjah, UAE</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-feather="phone" class="w-5 h-5 text-cyan-400 mr-3"></i>
+                                <span class="text-gray-300">+971 56 211 4282</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-feather="mail" class="w-5 h-5 text-cyan-400 mr-3"></i>
+                                <span class="text-gray-300">muneezmoidu@gmail.com</span>
+                            </div>
+                        </div>
+                        <div class="flex space-x-4 mt-8">
+                            <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">
+                                <i data-feather="linkedin" class="w-6 h-6"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">
+                                <i data-feather="github" class="w-6 h-6"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">
+                                <i data-feather="twitter" class="w-6 h-6"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div data-aos="fade-left">
+                        <form id="contact-form" class="space-y-6">
+                            <div>
+                                <input type="text" id="name" placeholder="Your Name" required
+                                    class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-cyan-400 focus:outline-none transition-colors">
+                            </div>
+                            <div>
+                                <input type="email" id="email" placeholder="Your Email" required
+                                    class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-cyan-400 focus:outline-none transition-colors">
+                            </div>
+                            <div>
+                                <textarea id="message" rows="4" placeholder="Your Message" required
+                                    class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-cyan-400 focus:outline-none transition-colors resize-none"></textarea>
+                            </div>
+                            <button type="submit" class="btn-cyber w-full py-3 rounded-lg">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-800 py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-gray-400">
+                &copy; 2024 Muneez Moidu. All rights reserved. | Cybersecurity Analyst based in UAE
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Initialize Feather Icons
+        feather.replace();
+
+        // Initialize Vanta.js background
+        VANTA.NET({
+            el: "#vanta-bg",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            color: 0x00d4ff,
+            backgroundColor: 0x050714,
+            points: 10.00,
+            maxDistance: 25.00,
+            spacing: 18.00
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenuBtn = document.getElementById('close-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+
+        closeMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+
+        // Smooth scrolling
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                    mobileMenu.classList.remove('active');
+                }
+            });
+        });
+
+        // Contact form submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                submitBtn.textContent = 'Message Sent!';
+                submitBtn.style.background = 'linear-gradient(45deg, #00ff88, #00d4ff)';
+                
+                setTimeout(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                    submitBtn.style.background = 'linear-gradient(45deg, #00d4ff, #00ff88)';
+                    this.reset();
+                }, 2000);
+            }, 1500);
+        });
+
+        // Animate skill bars on scroll
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px'
+        };
+
+        const skillObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const skillBars = entry.target.querySelectorAll('.skill-bar');
+                    skillBars.forEach(bar => {
+                        const targetWidth = bar.dataset.width || '0%';
+                        bar.style.width = '0%';
+                        setTimeout(() => {
+                            bar.style.width = targetWidth;
+                        }, 200);
+                    });
+                }
+            });
+        }, observerOptions);
+
+        const skillsSection = document.querySelector('#skills');
+        if (skillsSection) {
+            skillObserver.observe(skillsSection);
+        }
+
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('shadow-lg');
+            } else {
+                nav.classList.remove('shadow-lg');
+            }
+        });
+
+        // Typing effect for hero section
+        const typingTexts = ['Cybersecurity Analyst', 'SIEM Expert', 'Threat Detection Specialist'];
+        let typingIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingElement = document.querySelector('.typing-effect');
+
+        function typeWriter() {
+            const currentText = typingTexts[typingIndex];
+            
+            if (isDeleting) {
+                typingElement.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            if (!isDeleting && charIndex === currentText.length) {
+                setTimeout(() => isDeleting = true, 2000);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                typingIndex = (typingIndex + 1) % typingTexts.length;
+            }
+
+            setTimeout(typeWriter, isDeleting ? 50 : 100);
+        }
+
+        // Start typing effect
+        if (typingElement) {
+            typeWriter();
+        }
+    </script>
+</body>
+</html>
