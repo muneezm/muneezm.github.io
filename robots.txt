@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://muneezm.github.io/sitemap.xml
